@@ -1,19 +1,15 @@
 analise_estrutura:
-  description: "Realizar uma inspeção da estrutura atual do projeto, mapeando diretórios, arquivos e padrões."
+  description: "Realizar uma inspeção da estrutura atual do projeto, mapeando diretórios, arquivos e padrões usando ferramentas disponíveis."
   expected_output: "Relatório arquitetura_atual.md com estrutura, sugestões e justificativas técnicas."
-  agent: senior_architect
 
 analise_heuristicas:
   description: "Analisar integrações, APIs, bibliotecas externas e dependências do projeto."
   expected_output: "Documento analise_heuristicas_integracoes.md com mapa de integrações e sugestões."
-  agent: senior_analytics
 
 analise_solid:
   description: "Verificar aderência aos princípios S.O.L.I.D. no código."
   expected_output: "Relatório analise_solid.md com violações e recomendações de refatoração."
-  agent: quality_consultant
 
 padroes_projeto:
   description: "Avaliar e propor padrões de projeto aplicáveis (Singleton, Factory, Observer, etc)."
   expected_output: "Documento padroes_de_projeto.md com sugestões e exemplos aplicados."
-  agent: quality_control_manager

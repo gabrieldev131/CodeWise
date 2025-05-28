@@ -1,50 +1,27 @@
-#!/usr/bin/env python
-import sys
 import os
-import warnings
-from datetime import datetime
+import traceback
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=".env")
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+print("Modelo em uso:", os.getenv("MODEL_NAME"))
 
 from crew import Codewise
-
-warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
+from datetime import datetime
 
 def run():
     inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year),
-        'project_path': './'  # ou o caminho real do código
+        "topic": "AI LLMs",
+        "current_year": str(datetime.now().year),
+        "project_path": "./"
     }
-    try:
-        Codewise().crew().kickoff(inputs=inputs)
-    except Exception as e:
-        raise Exception(f"An error occurred while running the crew: {e}")
+    codewise = Codewise()
+    crew_instance = codewise.crew()
 
-
-def train():
-    inputs = {
-        "topic": "AI LLMs"
-    }
     try:
-        Codewise().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        crew_instance.kickoff(inputs=inputs)
     except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
-
-def replay():
-    try:
-        Codewise().crew().replay(task_id=sys.argv[1])
-    except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
-
-def test():
-    inputs = {
-        "topic": "AI LLMs"
-    }
-    try:
-        Codewise().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
-    except Exception as e:
-        raise Exception(f"An error occurred while testing the crew: {e}")
+        print(f"Erro ao executar: {e}")
 
 if __name__ == "__main__":
     run()
