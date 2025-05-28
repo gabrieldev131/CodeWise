@@ -1,0 +1,1 @@
+Refatoração no módulo de autenticação. Removido o acoplamento com o serviço X e aplicado padrão Strategy nas verificações.
