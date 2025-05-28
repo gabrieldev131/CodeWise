@@ -1,27 +1,23 @@
 import os
 import traceback
 from dotenv import load_dotenv
-load_dotenv(dotenv_path=".env")
+from cw_runner import CodewiseRunner  # <- nova importação
 
+# Carrega variáveis do .env
+load_dotenv(dotenv_path=".env")
 
 print("Modelo em uso:", os.getenv("MODEL_NAME"))
 
-from crew import Codewise
-from datetime import datetime
-
 def run():
-    inputs = {
-        "topic": "AI LLMs",
-        "current_year": str(datetime.now().year),
-        "project_path": "./"
-    }
-    codewise = Codewise()
-    crew_instance = codewise.crew()
+    input_path = "entrada.txt"   # <- entrada que simula o commit
+    output_path = "resposta.txt" # <- saída unificada dos .md
 
     try:
-        crew_instance.kickoff(inputs=inputs)
+        runner = CodewiseRunner(input_path=input_path, output_path=output_path)
+        runner.rodar()
     except Exception as e:
-        print(f"Erro ao executar: {e}")
+        print("Erro ao executar:")
+        traceback.print_exc()
 
 if __name__ == "__main__":
     run()
