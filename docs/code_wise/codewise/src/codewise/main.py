@@ -9,7 +9,7 @@ load_dotenv(dotenv_path=".env")
 print("Modelo em uso:", os.getenv("MODEL_NAME"))
 
 def run():
-    input_path = "entrada.txt"   # <- entrada que simula o commit
+    input_path = "entrada.txt"   # <- entrada que está simulando o commit por enquanto
     output_path = "resposta.txt" # <- saída unificada dos .md
 
     try:

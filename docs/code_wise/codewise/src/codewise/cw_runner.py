@@ -24,16 +24,12 @@ class CodewiseRunner:
         # Lê input do commit
         entrada_txt = self._ler_input()
 
-        # Cria a crew
-        crew = Codewise().crew()
+        #  Corrigido: passa o commit_message para a instância
+        codewise = Codewise(commit_message=entrada_txt)
+        crew = codewise.crew()
 
-        # Roda a crew passando o texto do commit
-        inputs = {
-            "topic": entrada_txt,
-            "current_year": "2025",
-            "project_path": "./"
-        }
-        crew.kickoff(inputs=inputs)
+        #  Agora não precisa mais de "inputs", pois o conteúdo foi injetado no YAML
+        crew.kickoff()
 
         # Une os arquivos de output
         arquivos_md = [

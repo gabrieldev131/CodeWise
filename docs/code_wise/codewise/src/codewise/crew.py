@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, re
 import yaml
 from dotenv import load_dotenv
 from crewai import Agent, Crew, Process, Task, LLM
@@ -10,12 +10,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 # Carrega variáveis do .env
 load_dotenv()
 
-# Carrega configurações YAML
+# Carrega configurações dos agentes (global)
 with open('config/agents.yaml', 'r', encoding='utf-8') as f:
     agents_config_data = yaml.safe_load(f)
-
-with open('config/tasks.yaml', 'r', encoding='utf-8') as f:
-    tasks_config_data = yaml.safe_load(f)
 
 # Instancia o modelo Gemini
 llm = LLM(
@@ -26,6 +23,20 @@ llm = LLM(
 @CrewBase
 class Codewise():
     """Codewise crew"""
+
+    def __init__(self, commit_message: str):
+        self.commit_message = commit_message
+
+        # Carrega tasks.yaml com substituição segura de {{ topic }}
+        with open('config/tasks.yaml', 'r', encoding='utf-8') as f:
+            raw_tasks = f.read()
+
+            # Escapa corretamente a mensagem para evitar quebra no YAML
+            escaped_message = self.commit_message.replace('"', '\\"').replace('\n', ' ').strip()
+
+            # Substitui todas as ocorrências de {{ topic }} de forma segura
+            raw_tasks = re.sub(r"\{\{\s*topic\s*\}\}", escaped_message, raw_tasks)
+            self.tasks_config_data = yaml.safe_load(raw_tasks)
 
     @agent
     def senior_architect(self) -> Agent:
@@ -49,7 +60,7 @@ class Codewise():
 
     @task
     def analise_estrutura(self) -> Task:
-        cfg = tasks_config_data['analise_estrutura']
+        cfg = self.tasks_config_data['analise_estrutura']
         return Task(
             description=cfg['description'],
             expected_output=cfg['expected_output'],
@@ -59,7 +70,7 @@ class Codewise():
 
     @task
     def analise_heuristicas(self) -> Task:
-        cfg = tasks_config_data['analise_heuristicas']
+        cfg = self.tasks_config_data['analise_heuristicas']
         return Task(
             description=cfg['description'],
             expected_output=cfg['expected_output'],
@@ -69,7 +80,7 @@ class Codewise():
 
     @task
     def analise_solid(self) -> Task:
-        cfg = tasks_config_data['analise_solid']
+        cfg = self.tasks_config_data['analise_solid']
         return Task(
             description=cfg['description'],
             expected_output=cfg['expected_output'],
@@ -79,7 +90,7 @@ class Codewise():
 
     @task
     def padroes_projeto(self) -> Task:
-        cfg = tasks_config_data['padroes_projeto']
+        cfg = self.tasks_config_data['padroes_projeto']
         return Task(
             description=cfg['description'],
             expected_output=cfg['expected_output'],

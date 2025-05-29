@@ -1,1 +1,1 @@
-Refatoração no módulo de autenticação. Removido o acoplamento com o serviço X e aplicado padrão Strategy nas verificações.
+Refatorado o serviço de envio de e-mails. Removido o acoplamento com o serviço X e aplicado padrão Strategy nas verificações.

@@ -1,15 +1,28 @@
 analise_estrutura:
-  description: "Realizar uma inspeção da estrutura atual do projeto, mapeando diretórios, arquivos e padrões usando ferramentas disponíveis."
-  expected_output: "Relatório arquitetura_atual.md com estrutura, sugestões e justificativas técnicas."
+  description: >
+    Com base na seguinte mensagem de commit: "{{ topic }}",
+    realize uma inspeção na estrutura do projeto, mapeando diretórios, arquivos e padrões utilizados.
+    Considere como essa mudança pode impactar a organização do código.
+  expected_output: >
+    Relatório arquitetura_atual.md com estrutura, sugestões e justificativas técnicas relacionadas à mudança.
 
 analise_heuristicas:
-  description: "Analisar integrações, APIs, bibliotecas externas e dependências do projeto."
-  expected_output: "Documento analise_heuristicas_integracoes.md com mapa de integrações e sugestões."
+  description: >
+    Considerando o commit informado: "{{ topic }}",
+    analise as integrações, bibliotecas externas e APIs afetadas pela mudança.
+  expected_output: >
+    Documento analise_heuristicas_integracoes.md com mapa de integrações e sugestões com base na alteração feita.
 
 analise_solid:
-  description: "Verificar aderência aos princípios S.O.L.I.D. no código."
-  expected_output: "Relatório analise_solid.md com violações e recomendações de refatoração."
+  description: >
+    Com base no commit: "{{ topic }}",
+    avalie a aderência da mudança aos princípios S.O.L.I.D., identificando possíveis violações ou melhorias.
+  expected_output: >
+    Relatório analise_solid.md com violações e recomendações de refatoração baseadas na alteração feita.
 
 padroes_projeto:
-  description: "Avaliar e propor padrões de projeto aplicáveis (Singleton, Factory, Observer, etc)."
-  expected_output: "Documento padroes_de_projeto.md com sugestões e exemplos aplicados."
+  description: >
+    A partir da seguinte descrição de commit: "{{ topic }}",
+    avalie se há aplicação correta ou ausência de padrões de projeto como Singleton, Strategy ou Factory.
+  expected_output: >
+    Documento padroes_de_projeto.md com sugestões aplicadas ao cenário descrito no commit.
