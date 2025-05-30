@@ -1,1 +1,1 @@
-Refatorado o serviço de envio de e-mails. Removido o acoplamento com o serviço X e aplicado padrão Strategy nas verificações.
+mudança no serviço de envio de e-mails. Removido o acoplamento com o serviço X e aplicado padrão Strategy nas verificações.
