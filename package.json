@@ -35,6 +35,22 @@
     "@docusaurus/types": "^3.5.2",
     "cz-conventional-changelog": "^3.3.0",
     "typescript": "~5.2.2"
+=======
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "dev": "docusaurus start"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/types": "3.7.0"
   },
   "browserslist": {
     "production": [
@@ -56,4 +72,6 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   }
+  "description": "Docusaurus example project"
+
 }
